@@ -50,6 +50,7 @@ def generate(request, id):
         "education":profile.education,
         "projet":profile.projet,
     }
+    #recuperation du template
     template = render_to_string("pdf/generator.html", context)
     #generation du pdf
     pdf = weasyprint.HTML(string=template).write_pdf()

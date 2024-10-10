@@ -57,6 +57,6 @@ def generate(request, id):
 
     #retourner le pdf telechargé
     response = HttpResponse(pdf, content_type='application/pdf')
-    response["Content-Disposition"] = "attachment; filename='MyCv.pdf'"
+    response["Content-Disposition"] = "attachment; filename='CV.pdf'"
 
     return response

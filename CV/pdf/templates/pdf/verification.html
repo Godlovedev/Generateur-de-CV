@@ -8,7 +8,7 @@
         text-decoration: underline;
     }
 </style>
-<h1>Verifiez que vos données sont correctes</h1>
+<h1>Vérifiez que vos données sont correctes</h1>
 
 <nav class="navbar navbar-expand-lg mt-5 navbar-light bg-primary">
     <h2 class="text-white">{{ profile.name }}</h2>
@@ -35,10 +35,10 @@
 <p>{{ profile.objectif }}</p>
 
 <nav class="navbar navbar-expand-lg mt-5 navbar-light bg-primary">
-    <small class="text-white">GodloveCV generator {% now "Y-m-d" %}</small>
+    <small class="text-white">G-loveCV generator {% now "Y-m-d" %}</small>
 </nav>
 <br>
 
-<a href="{%url 'download'%}" class="btn btn-primary text-white mb-5">cliquez ici pour télécharger</a>
+<a href="{% url 'download' %}" class="btn btn-primary text-white mb-5">cliquez ici pour télécharger</a>
 
 {% endblock content %}

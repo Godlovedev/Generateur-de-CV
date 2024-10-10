@@ -55,7 +55,7 @@ def generate(request, id):
     #generation du pdf
     pdf = weasyprint.HTML(string=template).write_pdf()
 
-    #retourner le pdf telechargé
+    #retourner le pdf télechargé
     response = HttpResponse(pdf, content_type='application/pdf')
     response["Content-Disposition"] = "attachment; filename='CV.pdf'"
 

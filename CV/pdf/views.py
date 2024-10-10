@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from pdf.models import Profile
+import weasyprint
+from django.template.loader import render_to_string
+from django.http import HttpResponse
+import datetime
 
 # Create your views here.
 def index(request):
@@ -23,4 +27,36 @@ def formulaire(request):
         profile = Profile.objects.create(name=name, email=email, phone=phone, address=address, competance=competence, langue=langue, interet=interet, objectif=objectif, experience=experience, education=education, projet=projet)
         profile.save()
 
+        return redirect("verification")
+
     return render(request, "pdf/form.html")
+
+def verification(request):
+    profile = Profile.objects.latest("id")
+    return render(request, "pdf/verification.html", {"profile":profile})
+
+def generate(request, id):
+    profile = Profile.objects.get(id=id)
+    context = {
+        "name":profile.name,
+        "email":profile.email,
+        "phone":profile.phone,
+        "address":profile.address,
+        "competance":profile.competance,
+        "langue":profile.langue,
+        "interet":profile.interet,
+        "objectif":profile.objectif,
+        "experience":profile.experience,
+        "education":profile.education,
+        "projet":profile.projet,
+    }
+
+    template = render_to_string("pdf/generator.html", context)
+
+    pdf = weasyprint.HTML(string=template).write_pdf()
+
+    #retourner le pdf telechargé
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response["Content-Disposition"] = "attachment; filename='MyCv.pdf'"
+
+    return response

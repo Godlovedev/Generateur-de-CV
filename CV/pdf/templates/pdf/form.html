@@ -1,0 +1,60 @@
+{% extends "pdf/base.html" %}
+
+{% block content %}
+<form action="" class="" method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="name">Nom et Prenom</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="nom et prenom">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="address email">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" class="form-control" name="address" id="address" placeholder="address">
+    </div>
+    <div class="form-group">
+        <label for="address">Competances</label>
+        <input type="text" class="form-control" name="competence" id="competence" placeholder="Competances">
+    </div>
+    <div class="form-group">
+        <label for="experience">Experience</label>
+        <input type="text" class="form-control" name="experience" id="experience" placeholder="experience">
+    </div>
+    <div class="form-group">
+        <label for="objectifs">objectifs</label>
+        <textarea type="text" class="form-control" name="objectif" id="objectifs" placeholder="objectifs"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="education">Education</label>
+        <textarea type="text" class="form-control" name="education" id="education" placeholder="education"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="projet">Projet</label>
+        <textarea type="text" class="form-control" name="projet" id="projet" placeholder="projet"></textarea>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="telephone">Telephone</label>
+            <input type="text" class="form-control" name="telephone" id="telephone" placeholder="telephone">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="langue">Langue</label>
+            <input type="text" class="form-control" name="langue" id="langue" placeholder="langue">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="interet">Interet</label>
+            <input type="text" class="form-control" name="interet" id="interet" placeholder="interet">
+        </div>
+    </div>
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-primary">Créer</button>
+    </div>
+
+</form>
+
+{% endblock content %}

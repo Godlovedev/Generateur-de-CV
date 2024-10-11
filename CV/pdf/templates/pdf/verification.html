@@ -10,8 +10,8 @@
 </style>
 <h1>Vérifiez que vos données sont correctes</h1>
 
-<nav class="navbar navbar-expand-lg mt-5 navbar-light bg-primary">
-    <h2 class="text-white">{{ profile.name }}</h2>
+<nav class=" mt-5 p-2 mb-2 bg-primary">
+    <h2 class="text-white text-center">{{ profile.name }}</h2>
 </nav>
 <h4 class="title">CONTACT</h4>
 <p>{{ profile.email }} <br> {{ profile.phone }} <br> {{ profile.address }}</p>
@@ -39,6 +39,6 @@
 </nav>
 <br>
 
-<a href="{% url 'download' %}" class="btn btn-primary text-white mb-5">cliquez ici pour télécharger</a>
+<a href="{{ profile.get_absolute_url }}" class="btn btn-primary text-white mb-5">cliquez ici pour télécharger</a>
 
 {% endblock content %}

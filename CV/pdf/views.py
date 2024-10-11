@@ -60,3 +60,7 @@ def generate(request, id):
     response["Content-Disposition"] = "attachment; filename='CV.pdf'"
 
     return response
+
+def cv_list(request):
+    profile = Profile.objects.all()
+    return render(request, "pdf/list.html", {"profiles":profile})

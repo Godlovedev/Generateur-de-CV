@@ -1,0 +1,25 @@
+{% extends "pdf/base.html" %}
+
+
+{% block content %}
+<div class="col-md-12 mt-5">
+    <p class="text-center">Liste des CV</p>
+    <ul class="">
+        {% for profile in profiles %}
+        <li class="row mb-3">
+            <div class="col-md-6">
+                <p>{{ profile.name }}</p>
+            </div>
+            <div class="col-md-6">
+                <a href="{{ profile.get_absolute_url }}" class="btn btn-primary text-white">Télecharger le pdf</a>
+            </div>
+        </li>
+
+        {% empty %}
+        <p class="">Vous n'avez pas encore créé de CV</p>
+        {% endfor %}
+    </ul>
+</div>
+
+
+{% endblock content %}

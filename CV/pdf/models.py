@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Profile(models.Model):
@@ -20,3 +21,6 @@ class Profile(models.Model):
 
     class Meta:
         ordering = ['-date_added']
+
+    def get_absolute_url(self):
+        return reverse("download", kwargs={"id": self.id})

@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from pdf.models import Profile
-from pdf.tasks import download_cv 
 
 
 # Create your views here.

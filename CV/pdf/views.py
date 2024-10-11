@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
 from pdf.models import Profile
-import weasyprint
-from django.template.loader import render_to_string
-from django.http import HttpResponse
-import datetime
+from pdf.tasks import download_cv 
+
 
 # Create your views here.
 def index(request):
@@ -36,30 +34,8 @@ def verification(request):
     return render(request, "pdf/verification.html", {"profile":profile})
 
 def generate(request, id):
-    profile = Profile.objects.get(id=id)
-    context = {
-        "name":profile.name,
-        "email":profile.email,
-        "phone":profile.phone,
-        "address":profile.address,
-        "competance":profile.competance,
-        "langue":profile.langue,
-        "interet":profile.interet,
-        "objectif":profile.objectif,
-        "experience":profile.experience,
-        "education":profile.education,
-        "projet":profile.projet,
-    }
-    #recuperation du template
-    template = render_to_string("pdf/generator.html", context)
-    #generation du pdf
-    pdf = weasyprint.HTML(string=template).write_pdf()
-
-    #retourner le pdf téléchargé
-    response = HttpResponse(pdf, content_type='application/pdf')
-    response["Content-Disposition"] = "attachment; filename='CV.pdf'"
-
-    return response
+    download_cv.delay(id=id)
+    return redirect("home")
 
 def cv_list(request):
     profile = Profile.objects.all()
